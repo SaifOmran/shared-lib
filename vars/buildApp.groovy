@@ -11,6 +11,7 @@ def call(Map config = [:]) {
             IMAGE_NAME = "${config.IMAGE_NAME}"
             IMAGE_TAG  = "${config.IMAGE_TAG}"
             REPO_NAME  = "${config.REPO_NAME}"
+            CONTAINER_NAME = "${config.CONTAINER_NAME}"
         }
 
         tools {
@@ -76,7 +77,7 @@ def call(Map config = [:]) {
             }
             stage('Deploy') {
                 steps {
-                    sh "docker run -d --name ${CONTAINER_NAME} -p ${PORT}:8080 ${IMAGE_NAME}:${IMAGE_TAG}"
+                    sh "docker run -d --name ${CONTAINER_NAME} -p ${SERVER_PORT}:8080 ${IMAGE_NAME}:${IMAGE_TAG}"
                 }
             }
         }
